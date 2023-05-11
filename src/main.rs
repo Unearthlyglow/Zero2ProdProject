@@ -1,4 +1,5 @@
 use actix_web::{web, App, HttpRequest, HttpResponse, HttpServer, Responder};
+use zero2prod::run;
 
 async fn health_check() -> impl Responder {
     HttpResponse::Ok()
@@ -11,15 +12,12 @@ async fn greet(req: HttpRequest) -> impl Responder {
 
 #[tokio::main]
 async fn main() -> Result<(), std::io::Error> {
-    HttpServer::new(|| {
-        App::new()
-            .route("/", web::get().to(greet))
-            .route("/{name}", web::get().to(greet))
-            .route("/health_check", web::get().to(health_check))
-    })
-    .bind("127.0.0.1:8020")?
-    .run()
-    .await
+    run()?.await
 }
 
-//Stopped at Our First Integration Test 
+//Stopped at
+
+//Notes:
+//5/11/23::
+//1. Dev dependencies are used exclusively when running tests or examples
+//they do not get included in the final aplication binary.
