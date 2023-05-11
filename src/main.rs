@@ -1,4 +1,4 @@
-use actix_web::{web, App, HttpRequest, HttpResponse, HttpServer, Responder};
+use actix_web::{HttpRequest, HttpResponse, Responder};
 use zero2prod::run;
 
 async fn health_check() -> impl Responder {
